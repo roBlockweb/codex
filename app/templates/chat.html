@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NexusChat v0.3</title>
+  <style>
+    body { background: black; color: white; font-family: monospace; margin: 0; padding: 20px; }
+    #chatbox { height: 60vh; overflow-y: auto; border: 1px solid white; padding: 10px; }
+    #input { width: 80%; font-family: monospace; }
+    button { font-family: monospace; padding: 5px 10px; }
+  </style>
+</head>
+<body>
+<pre>+------------------------------+
+|      NexusChat v0.3         |
++------------------------------+</pre>
+<button onclick="resetHistory()">Reset History</button><br>
+<div id="chatbox"></div>
+<input id="input" placeholder="Type your message...">
+<button onclick="send()">Send</button>
+<script>
+async function send() {
+  const inp = document.getElementById('input');
+  const chat = document.getElementById('chatbox');
+  const msg = inp.value;
+  if (!msg) return;
+  chat.innerHTML += `<pre>User: ${msg}</pre>`;
+  inp.value = '';
+  const res = await fetch('/api/chat', {
+    method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({prompt: msg})
+  });
+  const data = await res.json();
+  chat.innerHTML += `<pre>Assistant: ${data.response}</pre>`;
+  chat.scrollTop = chat.scrollHeight;
+}
+</script>
+<script>
+async function resetHistory() {
+  await fetch('/api/reset', {method: 'POST'});
+  const chat = document.getElementById('chatbox');
+  chat.innerHTML = '';
+  alert('History has been reset.');
+}
+</script>
+</script>
+</body>
+</html>

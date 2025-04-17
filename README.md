@@ -1,55 +1,65 @@
-# ChatGPT Assistant - Codex CLI
+# NexusChat v0.3
 
-This repository documents the full range of capabilities provided by ChatGPT (powered by OpenAI), exposed through the Codex CLI agentic interface.
+An offline, open-source AI chat application for macOS with a retro CLI vibe.  
+Built by roBlock & OpenAI Codex.  
 
-## Overview
+Features:
+- One-click installer (.pkg) for macOS
+- Automatic environment & dependency setup via py2app
+- Supports Hugging Face models (e.g., Mistral 7B, LLaMA 3)
+- Local model download & offline inference
+- Simple ASCII UI served in your browser
 
-ChatGPT is a state-of-the-art AI model trained to understand and generate human-like text. When integrated with the Codex CLI, it becomes an autonomous coding assistant, capable of interpreting natural language instructions, applying code edits, and orchestrating development workflows.
+Getting Started
+-------------
+1. Download `NexusChat-0.3.pkg` from Releases.  
+2. Run the installer; it will place NexusChat in `/Applications`.  
+3. Launch **NexusChat** from Launchpad or the Applications folder.  
 
-## Core Capabilities
+First Run
+---------
+On first launch, NexusChat will open a browser window to:
+1. Enter your Hugging Face API token.  
+2. Select a compatible model for your machine.  
+3. Click **Install** to download the model locally.  
 
-- Natural Language Understanding & Generation: Parses prompts and crafts context-aware responses.
-- Conversational Context Management: Maintains multi-turn dialogues, referencing prior context.
-- Multilingual Support: Assists in dozens of languages for global collaboration.
-- Knowledge Synthesis: Summarizes and explains concepts up to the model’s training cutoff (June 2024).
-- Reasoning & Planning: Breaks down complex tasks into actionable steps.
-- Code Generation & Refactoring: Writes, optimizes, and restructures code across popular languages.
-- Debugging & Test Automation: Identifies bugs, writes unit/integration tests, and automates validation.
-- Documentation & Review: Generates comprehensive documentation and performs code reviews.
-- Architectural Design: Recommends system architectures, design patterns, and best practices.
+Once installed, the chat interface loads automatically.  
+Type your messages and get AI-powered responses—all offline.
 
-## Codex CLI Integration Features
+Packaging from Source
+---------------------
+```bash
+git clone https://github.com/roBlockweb/codex.git
+cd codex
+brew install python3 pkgbuild  # if not already installed
+pip install -r requirements.txt
+bash build_pkg.sh
+```
 
-- Agentic Workflow: Interprets user intent and autonomously applies code changes.
-- Patch Generation: Creates and applies diffs to update codebases with minimal scope.
-- Shell Command Execution: Safely runs build, test, lint, and deployment commands.
-- Git Automation: Stages, commits, branches, and tags repositories programmatically.
-- Rollback & Safety: Reverts or stages incomplete changes to avoid broken states.
-- Telemetry & Logging: Records operations for reproducibility, auditing, and session replay.
+License
+-------
+MIT License (see LICENSE file, if included)
 
-## Usage Examples
+## How It Works
 
-1. Add a new feature:
+- Configuration: On first run, enter your Hugging Face token, select a model, and choose where to store data.  
+- Config (`config.json`) is saved to `~/Library/Application Support/NexusChat`.  
+- Model Management: Downloads model weights & tokenizer into `data_dir/models/{model}`.  
+- Memory Store: Uses ChromaDB (SQLite) in `data_dir/chromadb` with SentenceTransformer embeddings to store and retrieve past messages as vector memories.  
+- Chat API: A Flask server hosts `/api/chat`, which integrates memory context and uses local Transformers for generation.  
+- Persistence & Reset: Conversation history persists locally and can be cleared via the **Reset History** button.
+
+## Releasing v0.3
+
+1. Tag the release:
    ```bash
-   codex "Implement user authentication with JWT"
+   git tag -a v0.3 -m "Release v0.3"
+   git push --tags
    ```
-
-2. Debug and fix failing tests:
+2. Build the installer:
    ```bash
-   codex "Resolve test failures in payment processing module"
+   bash build_pkg.sh
    ```
-
-3. Generate documentation for a codebase:
-   ```bash
-   codex "Write API reference for the shopping cart module"
-   ```
-
-## Limitations
-
-- No External Internet Access: Operates solely on local code and provided context.
-- Knowledge Cutoff: Lacks awareness of events or libraries released after June 2024.
-- Prompt Dependency: Accuracy and relevance depend on clarity and completeness of user instructions.
-
-## Contribution
-
-Contributions and feedback are welcome. Please open issues or submit pull requests to refine documentation, add examples, or integrate new features.
+3. Upload `NexusChat-0.3.pkg` to your website (e.g., `www.nexuschat.com/downloads/`).
+4. Draft a GitHub Release (v0.3) and attach the installer.
+5. Announce your commercial release!
