@@ -1,4 +1,4 @@
-# NexusChat v0.3
+# NexusChat v0.4
 
 An offline, open-source AI chat application for macOS with a retro CLI vibe.  
 Built by roBlock & OpenAI Codex.  
@@ -12,7 +12,7 @@ Features:
 
 Getting Started
 -------------
-1. Download `NexusChat-0.3.pkg` from Releases.  
+1. Download `NexusChat-0.4.pkg` from Releases.  
 2. Run the installer; it will place NexusChat in `/Applications`.  
 3. Launch **NexusChat** from Launchpad or the Applications folder.  
 
@@ -49,17 +49,17 @@ MIT License (see LICENSE file, if included)
 - Chat API: A Flask server hosts `/api/chat`, which integrates memory context and uses local Transformers for generation.  
 - Persistence & Reset: Conversation history persists locally and can be cleared via the **Reset History** button.
 
-## Releasing v0.3
+## Releasing v0.4
 
 1. Tag the release:
    ```bash
-   git tag -a v0.3 -m "Release v0.3"
+   git tag -a v0.4 -m "Release v0.4"
    git push --tags
    ```
 2. Build the installer:
    ```bash
    bash build_pkg.sh
    ```
-3. Upload `NexusChat-0.3.pkg` to your website (e.g., `www.nexuschat.com/downloads/`).
-4. Draft a GitHub Release (v0.3) and attach the installer.
+3. Upload `NexusChat-0.4.pkg` to your website (e.g., `www.nexuschat.com/downloads/`).
+4. Draft a GitHub Release (v0.4) and attach the installer.
 5. Announce your commercial release!

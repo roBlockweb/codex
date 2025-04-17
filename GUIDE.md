@@ -5,7 +5,7 @@ Welcome to NexusChat! This guide will walk you through installing and using the 
 1) Download & Install
 ---------------------
 - Visit www.nexuschat.com and click **Download for macOS**.  
-- Open the downloaded **NexusChat-0.3.pkg** file and follow the installer steps.  
+- Open the downloaded **NexusChat-0.4.pkg** file and follow the installer steps.  
 - Once finished, you’ll see NexusChat in your Applications.
 
 2) First Launch

@@ -8,7 +8,7 @@ OPTIONS = {
     'includes': ['flask', 'transformers', 'huggingface_hub', 'requests', 'chromadb', 'sentence_transformers'],
     'plist': {
         'CFBundleName': 'NexusChat',
-        'CFBundleShortVersionString': '0.3',
+        'CFBundleShortVersionString': '0.4',
         'CFBundleIdentifier': 'com.roblock.nexuschat'
     }
 }

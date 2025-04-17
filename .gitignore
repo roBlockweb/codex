@@ -5,3 +5,4 @@ dist/
 *.pkg
 *.app
 *.DS_Store
+venv/
